@@ -32,7 +32,7 @@ server.use('/', (req, res) => {
   const scripts = bundles.js || [];
   const styles = bundles.css || [];
 
-  res.send(`
+  const response = `
     <!doctype html>
     <html lang="en">
     <head>
@@ -60,7 +60,9 @@ server.use('/', (req, res) => {
       </script>
     </body>
     </html>
-  `);
+  `;
+
+  res.send(response);
 });
 
 Loadable.preloadAll()
