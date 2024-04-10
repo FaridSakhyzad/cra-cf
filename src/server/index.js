@@ -36,30 +36,28 @@ server.use('/', (req, res) => {
     <!doctype html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Simple weather app</title>
-        ${styles
-    .map(style => {
-      return `<link href="${style.file}" rel="stylesheet" />`;
-    })
-    .join('\n')}
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <title>Simple weather app</title>
+
+      ${styles.map(style => {
+        return `<link href="${style.file}" rel="stylesheet" />`;
+      }).join('\n')}
     </head>
     <body>
-        <div id="root">${html}</div>
-        ${scripts
-    .map(script => {
-      return `
-              <script src="${script.file}"></script>`;
-    })
-    .join(' ')}
-         <script>
-          if ('serviceWorker' in navigator) {
-              window.addEventListener('load', () => {
-                  navigator.serviceWorker.register('/serviceWorker.js');
-              });
-          }
-        </script>
+      <div id="root">${html}</div>
+
+      ${scripts.map(script => {
+        return `<script src="${script.file}"></script>`;
+      }).join(' ')}
+
+      <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/serviceWorker.js');
+            });
+        }
+      </script>
     </body>
     </html>
   `);
